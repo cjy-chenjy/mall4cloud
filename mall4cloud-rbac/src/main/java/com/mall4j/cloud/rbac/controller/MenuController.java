@@ -14,10 +14,10 @@ import com.mall4j.cloud.rbac.vo.RouteMetaVO;
 import com.mall4j.cloud.rbac.vo.RouteVO;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
-import com.mall4j.cloud.common.util.BeanUtil;
+import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -35,6 +35,8 @@ public class MenuController {
 	@Autowired
 	private MenuService menuService;
 
+	@Autowired
+	private MapperFacade mapperFacade;
 
 	@GetMapping(value = "/route")
 	@Operation(summary = "路由菜单" , description = "获取当前登陆用户可用的路由菜单列表")
@@ -92,7 +94,7 @@ public class MenuController {
 		if(!Objects.equals(userInfoInTokenBO.getTenantId(),0L)){
 			throw new Mall4cloudException("无权限操作！");
 		}
-		Menu menu = BeanUtil.map(menuDTO, Menu.class);
+		Menu menu = mapperFacade.map(menuDTO, Menu.class);
 		menu.setBizType(menuDTO.getSysType());
 		if(Objects.isNull(menuDTO.getSysType())){
 			menu.setBizType(AuthUserContext.get().getSysType());

@@ -2,8 +2,10 @@ package com.mall4j.cloud.multishop.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  * 店铺详情DTO
@@ -42,12 +44,12 @@ public class ShopDetailDTO{
     private String identityCardLater;
 
     @Size(max = 30)
-    @Schema(description = "用户名" ,requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "用户名" ,required=true)
     private String username;
     @Size(max = 30)
 
     @Size(max = 64)
-    @Schema(description = "密码" ,requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "密码" ,required=true)
     private String password;
 
 	@Schema(description = "移动端背景图" )

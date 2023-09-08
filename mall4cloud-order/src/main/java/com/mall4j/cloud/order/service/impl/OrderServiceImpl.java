@@ -31,7 +31,7 @@ import com.mall4j.cloud.order.service.OrderService;
 import com.mall4j.cloud.order.vo.OrderCountVO;
 import com.mall4j.cloud.order.vo.OrderVO;
 import io.seata.spring.annotation.GlobalTransactional;
-import com.mall4j.cloud.common.util.BeanUtil;
+import ma.glasnost.orika.MapperFacade;
 import org.apache.rocketmq.client.producer.SendStatus;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.slf4j.Logger;
@@ -65,7 +65,8 @@ public class OrderServiceImpl implements OrderService {
     private SegmentFeignClient segmentFeignClient;
     @Autowired
     private SkuStockLockFeignClient skuStockLockFeignClient;
-
+    @Autowired
+    private MapperFacade mapperFacade;
     @Autowired
     private ShopCartFeignClient shopCartFeignClient;
     @Autowired
@@ -190,7 +191,7 @@ public class OrderServiceImpl implements OrderService {
             // 订单不存在
             throw new Mall4cloudException(ResponseEnum.ORDER_NOT_EXIST);
         }
-        return BeanUtil.map(order, OrderVO.class);
+        return mapperFacade.map(order, OrderVO.class);
     }
 
     /**
@@ -237,7 +238,7 @@ public class OrderServiceImpl implements OrderService {
 
 
     public List<Order> saveOrder(Long userId, ShopCartOrderMergerVO mergerOrder) {
-        OrderAddr orderAddr = BeanUtil.map(mergerOrder.getUserAddr(), OrderAddr.class);
+        OrderAddr orderAddr = mapperFacade.map(mergerOrder.getUserAddr(), OrderAddr.class);
         // 地址信息
         if (Objects.isNull(orderAddr)) {
             // 请填写收货地址

@@ -15,11 +15,11 @@ import com.mall4j.cloud.multishop.vo.ShopUserVO;
 import com.mall4j.cloud.multishop.vo.ShopUserSimpleVO;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
-import com.mall4j.cloud.common.util.BeanUtil;
+import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import java.util.Objects;
 
 /**
@@ -37,6 +37,8 @@ public class ShopUserController {
 	@Autowired
 	private ShopDetailService shopDetailService;
 
+	@Autowired
+	private MapperFacade mapperFacade;
 
 	@GetMapping("/info")
 	@Operation(summary = "登陆店铺用户信息" , description = "获取当前登陆店铺用户的用户信息")
@@ -67,7 +69,7 @@ public class ShopUserController {
 	@PostMapping
 	@Operation(summary = "保存店铺用户信息" , description = "保存店铺用户信息")
 	public ServerResponseEntity<Void> save(@Valid @RequestBody ShopUserDTO shopUserDTO) {
-		ShopUser shopUser = BeanUtil.map(shopUserDTO, ShopUser.class);
+		ShopUser shopUser = mapperFacade.map(shopUserDTO, ShopUser.class);
 		shopUser.setShopUserId(null);
 		shopUser.setShopId(AuthUserContext.get().getTenantId());
 		shopUser.setHasAccount(0);
@@ -78,7 +80,7 @@ public class ShopUserController {
 	@PutMapping
 	@Operation(summary = "更新店铺用户信息" , description = "更新店铺用户信息")
 	public ServerResponseEntity<Void> update(@Valid @RequestBody ShopUserDTO shopUserDTO) {
-		ShopUser shopUser = BeanUtil.map(shopUserDTO, ShopUser.class);
+		ShopUser shopUser = mapperFacade.map(shopUserDTO, ShopUser.class);
 		ShopUserVO dbShopUser = shopUserService.getByUserId(shopUserDTO.getShopUserId());
 		if (!Objects.equals(dbShopUser.getShopId(), AuthUserContext.get().getTenantId())) {
 			return ServerResponseEntity.fail(ResponseEnum.UNAUTHORIZED);

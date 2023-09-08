@@ -2,7 +2,6 @@ package com.mall4j.cloud.platform.service.impl;
 
 import com.mall4j.cloud.platform.model.SysUser;
 import com.mall4j.cloud.platform.vo.SysUserVO;
-import jakarta.annotation.Resource;
 import org.springframework.cache.annotation.Cacheable;
 import com.mall4j.cloud.api.auth.feign.AccountFeignClient;
 import com.mall4j.cloud.api.rbac.dto.UserRoleDTO;
@@ -21,6 +20,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**

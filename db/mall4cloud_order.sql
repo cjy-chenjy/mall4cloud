@@ -27,7 +27,7 @@ CREATE TABLE `order` (
   `shop_id` bigint DEFAULT NULL COMMENT '店铺id',
   `user_id` bigint NOT NULL COMMENT '用户ID',
   `delivery_type` tinyint DEFAULT NULL COMMENT '配送类型：无需快递',
-  `shop_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '店铺名称',
+  `shop_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '店铺名称',
   `total` bigint NOT NULL COMMENT '总值',
   `status` tinyint NOT NULL DEFAULT '0' COMMENT '订单状态 1:待付款 2:待发货 3:待收货(已发货) 5:成功 6:失败',
   `all_count` int DEFAULT NULL COMMENT '订单商品总数',
@@ -45,7 +45,7 @@ CREATE TABLE `order` (
   KEY `idx_shop_id` (`shop_id`) USING BTREE,
   KEY `idx_user_id` (`user_id`) USING BTREE,
   KEY `idx_finally_time` (`finally_time`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='订单信息';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='订单信息';
 
 /*Table structure for table `order_addr` */
 
@@ -56,21 +56,21 @@ CREATE TABLE `order_addr` (
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `user_id` bigint DEFAULT NULL COMMENT '用户ID',
-  `consignee` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收货人',
+  `consignee` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '收货人',
   `province_id` bigint DEFAULT NULL COMMENT '省ID',
-  `province` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '省',
+  `province` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '省',
   `city_id` bigint DEFAULT NULL COMMENT '城市ID',
-  `city` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '城市',
+  `city` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '城市',
   `area_id` bigint DEFAULT NULL COMMENT '区域ID',
-  `area` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '区',
-  `addr` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '地址',
-  `post_code` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '邮编',
-  `mobile` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '手机',
+  `area` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '区',
+  `addr` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '地址',
+  `post_code` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '邮编',
+  `mobile` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '手机',
   `lng` decimal(12,6) DEFAULT NULL COMMENT '经度',
   `lat` decimal(12,6) DEFAULT NULL COMMENT '纬度',
   PRIMARY KEY (`order_addr_id`) USING BTREE,
   KEY `idx_user_id` (`user_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5197 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='用户订单配送地址';
+) ENGINE=InnoDB AUTO_INCREMENT=5197 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='用户订单配送地址';
 
 /*Table structure for table `order_item` */
 
@@ -87,9 +87,9 @@ CREATE TABLE `order_item` (
   `sku_id` bigint unsigned NOT NULL COMMENT '产品SkuID',
   `user_id` bigint NOT NULL COMMENT '用户Id',
   `count` int DEFAULT '0' COMMENT '购物车产品个数',
-  `spu_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '产品名称',
-  `sku_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'sku名称',
-  `pic` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '产品主图片路径',
+  `spu_name` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' COMMENT '产品名称',
+  `sku_name` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT 'sku名称',
+  `pic` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '产品主图片路径',
   `delivery_type` tinyint DEFAULT NULL COMMENT '单个orderItem的配送类型3：无需快递',
   `shop_cart_time` datetime DEFAULT NULL COMMENT '加入购物车时间',
   `price` bigint NOT NULL COMMENT '产品价格',
@@ -100,7 +100,7 @@ CREATE TABLE `order_item` (
   KEY `idx_spu_id` (`spu_id`) USING BTREE,
   KEY `idx_sku_id` (`sku_id`) USING BTREE,
   KEY `idx_user_id` (`user_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4810 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='订单项';
+) ENGINE=InnoDB AUTO_INCREMENT=4810 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='订单项';
 
 /*Table structure for table `undo_log` */
 
@@ -109,15 +109,15 @@ DROP TABLE IF EXISTS `undo_log`;
 CREATE TABLE `undo_log` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `branch_id` bigint NOT NULL,
-  `xid` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `context` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `xid` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `context` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `rollback_info` longblob NOT NULL,
   `log_status` int NOT NULL,
   `log_created` datetime NOT NULL,
   `log_modified` datetime NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `ux_undo_log` (`xid`,`branch_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

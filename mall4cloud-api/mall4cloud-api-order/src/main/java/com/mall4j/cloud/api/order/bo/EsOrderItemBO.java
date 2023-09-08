@@ -9,28 +9,28 @@ import java.util.Date;
  * @date 2021/2/5
  */
 public class EsOrderItemBO {
-    @Schema(description = "商品图片" , requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "商品图片" , required = true)
     private String pic;
 
-    @Schema(description = "商品名称" , requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "商品名称" , required = true)
     private String spuName;
 
-    @Schema(description = "商品数量" , requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "商品数量" , required = true)
     private Integer count;
 
-    @Schema(description = "商品价格" , requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "商品价格" , required = true)
     private Long price;
 
-    @Schema(description = "skuId" , requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "skuId" , required = true)
     private Long skuId;
 
-    @Schema(description = "skuName" , requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "skuName" , required = true)
     private String skuName;
 
-    @Schema(description = "订单项id" , requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "订单项id" , required = true)
     private Long orderItemId;
 
-    @Schema(description = "商品id" , requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "商品id" , required = true)
     private Long spuId;
 
     /**

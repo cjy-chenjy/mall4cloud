@@ -2,8 +2,10 @@ package com.mall4j.cloud.payment.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-import jakarta.validation.constraints.NotEmpty;
-
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,10 +17,10 @@ import java.util.List;
 public class PayInfoDTO{
 
 	@NotEmpty(message = "订单号不能为空")
-	@Schema(description = "订单号" , requiredMode = Schema.RequiredMode.REQUIRED)
+	@Schema(description = "订单号" , required = true)
 	private List<Long> orderIds;
 
-	@Schema(description = "支付完成回跳地址" , requiredMode = Schema.RequiredMode.REQUIRED)
+	@Schema(description = "支付完成回跳地址" , required = true)
 	private String returnUrl;
 
 	public List<Long> getOrderIds() {

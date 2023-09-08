@@ -33,9 +33,7 @@ export default {
     password: 'Password',
     any: 'any',
     thirdparty: 'Or connect with',
-    thirdpartyTips: 'Can not be simulated on local, so please combine you own business simulation! ! !',
-    validateUsername: 'Please enter the correct username',
-    validatePassword: 'Password cannot be less than 6 digits'
+    thirdpartyTips: 'Can not be simulated on local, so please combine you own business simulation! ! !'
   },
   unit: {
     dollar: 'yuan'

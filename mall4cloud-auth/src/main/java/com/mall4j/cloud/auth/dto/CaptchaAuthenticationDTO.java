@@ -10,7 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 public class CaptchaAuthenticationDTO extends AuthenticationDTO {
 
-	@Schema(description = "验证码" , requiredMode = Schema.RequiredMode.REQUIRED)
+	@Schema(description = "验证码" , required = true)
 	private String captchaVerification;
 
 	public String getCaptchaVerification() {

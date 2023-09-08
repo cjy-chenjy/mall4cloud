@@ -7,10 +7,10 @@ import com.mall4j.cloud.biz.vo.AttachFileGroupVO;
 import com.mall4j.cloud.common.response.ServerResponseEntity;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
-import com.mall4j.cloud.common.util.BeanUtil;
+import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -25,7 +25,8 @@ import java.util.List;
 public class AttachFileGroupController {
     @Autowired
     private AttachFileGroupService attachFileGroupService;
-
+    @Autowired
+	private MapperFacade mapperFacade;
 
 	@GetMapping("/list")
 	@Operation(summary = "获取列表" , description = "分页获取列表")
@@ -43,7 +44,7 @@ public class AttachFileGroupController {
     @PostMapping
     @Operation(summary = "保存" , description = "保存")
     public ServerResponseEntity<Void> save(@Valid @RequestBody AttachFileGroupDTO attachFileGroupDTO) {
-        AttachFileGroup attachFileGroup = BeanUtil.map(attachFileGroupDTO, AttachFileGroup.class);
+        AttachFileGroup attachFileGroup = mapperFacade.map(attachFileGroupDTO, AttachFileGroup.class);
         attachFileGroup.setAttachFileGroupId(null);
         attachFileGroupService.save(attachFileGroup);
         return ServerResponseEntity.success();
@@ -52,7 +53,7 @@ public class AttachFileGroupController {
     @PutMapping
     @Operation(summary = "更新" , description = "更新")
     public ServerResponseEntity<Void> update(@Valid @RequestBody AttachFileGroupDTO attachFileGroupDTO) {
-        AttachFileGroup attachFileGroup = BeanUtil.map(attachFileGroupDTO, AttachFileGroup.class);
+        AttachFileGroup attachFileGroup = mapperFacade.map(attachFileGroupDTO, AttachFileGroup.class);
         attachFileGroupService.update(attachFileGroup);
         return ServerResponseEntity.success();
     }

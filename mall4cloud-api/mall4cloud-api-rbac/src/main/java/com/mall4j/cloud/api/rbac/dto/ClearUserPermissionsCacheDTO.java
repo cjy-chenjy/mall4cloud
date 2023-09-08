@@ -1,6 +1,6 @@
 package com.mall4j.cloud.api.rbac.dto;
 
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author FrozenWatermelon

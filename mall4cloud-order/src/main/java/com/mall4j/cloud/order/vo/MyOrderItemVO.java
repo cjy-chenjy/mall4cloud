@@ -10,32 +10,32 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "我的订单-订单项")
 public class MyOrderItemVO {
 
-    @Schema(description = "商品图片" , requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "商品图片" , required = true)
     @JsonSerialize(using = ImgJsonSerializer.class)
     private String pic;
 
-    @Schema(description = "商品名称" , requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "商品名称" , required = true)
     private String spuName;
 
-    @Schema(description = "订单号" ,requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "订单号" ,required=true)
     private Long orderId;
 
-    @Schema(description = "商品数量" , requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "商品数量" , required = true)
     private Integer count;
 
-    @Schema(description = "商品价格" , requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "商品价格" , required = true)
     private Long price;
 
-    @Schema(description = "skuId" , requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "skuId" , required = true)
     private Long skuId;
 
-    @Schema(description = "skuName" , requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "skuName" , required = true)
     private String skuName;
 
-    @Schema(description = "订单项id" , requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "订单项id" , required = true)
     private Long orderItemId;
 
-    @Schema(description = "商品id" , requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "商品id" , required = true)
     private Long spuId;
 
     public String getPic() {

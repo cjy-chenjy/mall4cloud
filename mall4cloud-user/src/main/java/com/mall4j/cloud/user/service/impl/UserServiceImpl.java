@@ -20,7 +20,7 @@ import com.mall4j.cloud.user.model.User;
 import com.mall4j.cloud.user.mapper.UserMapper;
 import com.mall4j.cloud.user.service.UserService;
 import io.seata.spring.annotation.GlobalTransactional;
-import com.mall4j.cloud.common.util.BeanUtil;
+import ma.glasnost.orika.MapperFacade;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -45,7 +45,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Autowired
     private AccountFeignClient accountFeignClient;
-
+    @Autowired
+    private MapperFacade mapperFacade;
     @Autowired
     private SegmentFeignClient segmentFeignClient;
 

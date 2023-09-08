@@ -11,31 +11,31 @@ import java.util.List;
  */
 public class EsOrderVO {
 
-    @Schema(description = "订单项" ,requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "订单项" ,required=true)
     private List<EsOrderItemVO> orderItems;
 
-    @Schema(description = "订单号" ,requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "订单号" ,required=true)
     private Long orderId;
 
-    @Schema(description = "总价" ,requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "总价" ,required=true)
     private Long actualTotal;
 
-    @Schema(description = "订单状态" ,requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "订单状态" ,required=true)
     private Integer status;
 
-    @Schema(description = "配送类型 3：无需快递" ,requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "配送类型 3：无需快递" ,required=true)
     private Integer deliveryType;
 
-    @Schema(description = "店铺名称" ,requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "店铺名称" ,required=true)
     private String shopName;
 
-    @Schema(description = "店铺id" ,requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "店铺id" ,required=true)
     private Long shopId;
 
-    @Schema(description = "订单创建时间" ,requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "订单创建时间" ,required=true)
     private Date createTime;
 
-    @Schema(description = "商品总数" ,requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(description = "商品总数" ,required=true)
     private Integer allCount;
 
     @Schema(description = "收货人姓名" )

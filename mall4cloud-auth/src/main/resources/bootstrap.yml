@@ -6,9 +6,9 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: ${NACOS_HOST:192.168.1.46}:${NACOS_PORT:8848}
-        username: nacos
-        password: nacos
+        server-addr: ${NACOS_HOST:127.0.1.1}:${NACOS_PORT:8848}
+        username:
+        password:
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
         file-extension: yml

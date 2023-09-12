@@ -5,6 +5,7 @@ import com.mall4j.cloud.auth.dto.RefreshTokenDTO;
 import com.mall4j.cloud.auth.manager.TokenStore;
 import com.mall4j.cloud.api.auth.vo.TokenInfoVO;
 import com.mall4j.cloud.common.response.ServerResponseEntity;
+import com.mall4j.cloud.common.util.BeanUtil;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,6 @@ public class TokenController {
 	@Autowired
 	private TokenStore tokenStore;
 
-	@Autowired
-	private MapperFacade mapperFacade;
-
 	@PostMapping("/ua/token/refresh")
 	public ServerResponseEntity<TokenInfoVO> refreshToken(@Valid @RequestBody RefreshTokenDTO refreshTokenDTO) {
 		ServerResponseEntity<TokenInfoBO> tokenInfoServerResponseEntity = tokenStore
@@ -36,7 +34,7 @@ public class TokenController {
 			return ServerResponseEntity.transform(tokenInfoServerResponseEntity);
 		}
 		return ServerResponseEntity
-				.success(mapperFacade.map(tokenInfoServerResponseEntity.getData(), TokenInfoVO.class));
+				.success(BeanUtil.map(tokenInfoServerResponseEntity.getData(), TokenInfoVO.class));
 	}
 
 }
